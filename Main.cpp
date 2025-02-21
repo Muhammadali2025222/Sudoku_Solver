@@ -1,6 +1,70 @@
 #include <iostream>
 using namespace std;
 
+void print_new_sudoku_3d(int new_sudoku_3d[9][9][10] )
+{
+   for (int row = 0; row < 9; row++) 
+    {
+        for (int col = 0; col < 9; col++) 
+        {
+            for (int poss = 0; poss < 10; poss++)
+            {
+              cout << new_sudoku_3d[ row ][ col ][ poss ] << "\t" ;
+            }
+            cout << "\n" ;
+        }
+        cout << "\n" ;
+    }
+}
+
+bool compare_sudoku_3d_and_new_sudoku_3d(int sudoku_3d[9][9][10], int new_sudoku_3d[9][9][10]) 
+{
+    for (int row = 0; row < 9; row++)
+	{
+		for (int col = 0; col < 9; col++)
+		{
+			for (int poss = 0; poss < 10; poss++) 
+			{
+				if (sudoku_3d[row][col][poss] == new_sudoku_3d[row ][col][poss]) 
+				{
+					cout << "sudoku_3d is equal to new_sudoku_3d";
+					return true;
+				}
+			}
+		}
+    }
+	cout<<"sudoku_3d is not equal to new_sudoku_3d";
+	return false;
+}
+
+void create_3d_sudoku(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
+{
+	for (int row = 0; row < 9; row++)
+	{
+		for (int col = 0; col < 9; col++)
+		{
+			
+			if (sudoku_2d[ row ][ col ] > -1)
+			{
+				new_sudoku_3d[ row ][ col ][ 0 ] = sudoku_2d[ row ][ col ] ;
+				for (int poss = 1 ; poss < 10 ; poss ++)
+				{
+					new_sudoku_3d[ row ][ col ][ poss ] = -1;
+				}
+			}
+			else if (sudoku_2d[ row ][ col ] == -1)
+			{
+				new_sudoku_3d[ row ][ col ][ 0 ] = -1;
+				for (int poss = 1 ; poss < 10 ; poss ++)
+				{
+					new_sudoku_3d[ row ][ col ][ poss ] = poss ;
+				}
+			}
+		}
+	}
+	print_new_sudoku_3d( new_sudoku_3d );
+}
+
 bool compare_Row0_Row1_dimensions(int sudoku_3d[9][9][10]) 
 {
     for (int row = 0; row < 9; row++)
@@ -541,7 +605,10 @@ int main()
 	//compare_Col0_Col2_dimensions(sudoku_3d);
 	//compare_Row0_Row1_dimensions(sudoku_3d);
 	//compare_Row0_Row2_dimensions(sudoku_3d);
-	cell_selection(sudoku_2d, sudoku_3d);
+	//cell_selection(sudoku_2d, sudoku_3d);
 	// row_possibility_elimination(sudoku_2d, sudoku_3d);
+	int new_sudoku_3d[9][9][10];
+	create_3d_sudoku(sudoku_2d ,new_sudoku_3d);
+	compare_sudoku_3d_and_new_sudoku_3d(sudoku_3d, new_sudoku_3d); 
 
 }
