@@ -22,7 +22,7 @@
 
 using namespace std;
 
-class Cell_Selection_Builder
+class Cell_Selection
 {
 	public:
 		static void cell_selector(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])

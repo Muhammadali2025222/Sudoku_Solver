@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Sudoku_3d_Builder.cpp"
+#include "create_sudoku_3d.cpp"
 #include "cell_selection.cpp"
 
 using namespace std;
@@ -8,7 +8,6 @@ using namespace std;
 
 int main()
 {
-	
 	int sudoku_2d[9][9] = {
 		{ 2, -1, -1,  3, -1,  1, -1, -1,  5},
 		{-1, -1, -1, -1,  4,  2,  6, -1, -1},
@@ -125,6 +124,6 @@ int main()
 	
 	int new_sudoku_3d[9][9][10];
 	
-	Sudoku_3d_Builder :: build_3d_sudoku(sudoku_2d ,new_sudoku_3d);
-	Cell_Selection_Builder :: cell_selector(sudoku_2d, new_sudoku_3d);
+	Create_Sudoku_3d :: new_sudoku_3d_creator(sudoku_2d ,new_sudoku_3d);
+	Cell_Selection :: cell_selector(sudoku_2d, new_sudoku_3d);
 }

@@ -1,11 +1,10 @@
-#ifndef Sudoku_3d_Builder_cpp
-#define Sudoku_3d_Builder_cpp
+#ifndef create_sudoku_3d_cpp
+#define create_sudoku_3d_cpp
 
-class Sudoku_3d_Builder
+class Create_Sudoku_3d
 {
 	public:
-
-		static void build_3d_sudoku(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
+		static void new_sudoku_3d_creator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
 		{
 			for (int row = 0; row < 9; row++)
 			{
