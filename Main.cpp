@@ -1,7 +1,8 @@
 #include <iostream>
 
 #include "create_sudoku_3d.cpp"
-#include "cell_selection.cpp"
+
+#include "sudoku_processor.cpp"
 
 using namespace std;
 
@@ -125,5 +126,7 @@ int main()
 	int new_sudoku_3d[9][9][10];
 	
 	Create_Sudoku_3d :: new_sudoku_3d_creator(sudoku_2d ,new_sudoku_3d);
-	Cell_Selection :: cell_selector(sudoku_2d, new_sudoku_3d);
+	
+	Sudoku_Processor :: process_sudoku(sudoku_2d, new_sudoku_3d);
+
 }
