@@ -5,24 +5,18 @@ class Fixed_Value_Column_Elimination
 {
 	public:
 
-		static void fixed_value_column_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
+		static void fixed_value_column_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
 		{
-			for (int col = 0; col < 9; col++)
+			int fixed_value = sudoku_2d[row][col];
+			if (fixed_value > -1)
 			{
-				for (int row = 0; row < 9; row++)
+				for (int row_3d = 0; row_3d < 9; row_3d++)
 				{
-					int fixed_value = sudoku_2d[row][col];
-					if (fixed_value > -1)
+					for (int poss = 1; poss <= 9; poss++)
 					{
-						for (int row_3d = 0; row_3d < 9; row_3d++)
+						if (new_sudoku_3d[row_3d][col][poss] == fixed_value)
 						{
-							for (int poss = 1; poss <= 9; poss++)
-							{
-								if (new_sudoku_3d[row_3d][col][poss] == fixed_value)
-								{
-									new_sudoku_3d[row_3d][col][poss] = -1;
-								}
-							}
+							new_sudoku_3d[row_3d][col][poss] = -1;
 						}
 					}
 				}

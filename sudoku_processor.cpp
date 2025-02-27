@@ -20,7 +20,6 @@ class Sudoku_Processor
 			int row_reset_count = 0;
 			for (int row = 0; row <= 9; row++)
 			{
-
 				if (Solved_Sudoku :: is_sudoku_solved(new_sudoku_3d))
 				{
 					cout << "Sudoku is solved!";
@@ -45,7 +44,7 @@ class Sudoku_Processor
 					{
 						if (Fixed_Value_Checker :: is_value_fixed(sudoku_2d, new_sudoku_3d, row, col))
 						{
-							Elimination_Implementor :: perform_elimination(sudoku_2d, new_sudoku_3d);
+							Elimination_Implementor :: perform_elimination(sudoku_2d, new_sudoku_3d, row, col);
 						}
 					}
 				}

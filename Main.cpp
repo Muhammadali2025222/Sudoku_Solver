@@ -125,7 +125,7 @@ int main()
 	
 	int new_sudoku_3d[9][9][10];
 	
-	Create_Sudoku_3d :: new_sudoku_3d_creator(sudoku_2d ,new_sudoku_3d);
+	Sudoku_3d_Creator :: create(sudoku_2d ,new_sudoku_3d);
 	
 	Sudoku_Processor :: process_sudoku(sudoku_2d, new_sudoku_3d);
 
