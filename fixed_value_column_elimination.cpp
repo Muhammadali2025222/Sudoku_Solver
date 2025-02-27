@@ -8,7 +8,7 @@ class Fixed_Value_Column_Elimination
 		static void fixed_value_column_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
 		{
 			int fixed_value = sudoku_2d[row][col];
-			if (fixed_value > -1)
+			if (fixed_value > 0 && fixed_value < 10)
 			{
 				for (int row_3d = 0; row_3d < 9; row_3d++)
 				{

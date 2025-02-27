@@ -6,7 +6,7 @@ class Updated_3d_Sudoku
 	public:
 		static void sudoku_3d_updater(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
 		{	
-			if (sudoku_2d[row][col] > -1)
+			if (sudoku_2d[row][col] > 0 && sudoku_2d[row][col] < 10 )
 			{
 				new_sudoku_3d[row][col][0] = sudoku_2d[row][col];
 				for (int poss = 1; poss <= 9; poss++)

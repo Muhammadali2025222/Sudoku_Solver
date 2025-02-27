@@ -32,7 +32,7 @@ class Multiple_Possibility_Row_Elimination
 		{
 			for (int poss = 1; poss <= 9; poss++)
 			{
-				if ( col > 0 || col > 3 || col > 6 && new_sudoku_3d[ row ][ col ][ poss ] > -1 )
+				if ( ( col > 0 || col > 3 || col > 6 ) && ( new_sudoku_3d[row][col][poss] > 0 && new_sudoku_3d[row][col][poss] < 10 ) )
 				{
 					if ( compare_Col0_Col1_dimensions( new_sudoku_3d, row, col ) &&
 						compare_Col0_Col2_dimensions( new_sudoku_3d, row, col ) )

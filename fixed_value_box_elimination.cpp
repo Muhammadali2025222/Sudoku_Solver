@@ -8,7 +8,7 @@ class Fixed_Value_Box_Elimination
 		static void fixed_value_box_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
 		{
 			int fixed_value = sudoku_2d[row][col];
-			if (fixed_value > -1)
+			if (fixed_value > 0 && fixed_value < 10 )
 			{
 				int box_start_row = (row/3)*3;
 				int box_start_col = (col/3)*3;

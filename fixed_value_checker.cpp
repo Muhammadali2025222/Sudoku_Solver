@@ -10,7 +10,7 @@ class Fixed_Value_Checker
 	public:
 		static bool is_value_fixed(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
 		{
-			if (sudoku_2d[row][col] == -1)
+			if (sudoku_2d[row][col] < 0 || sudoku_2d[row][col] > 9)
 			{
 				cout << "Cell [" << row << "][" << col << "] has no fixed value (Multiple possibilities)\n";
 				

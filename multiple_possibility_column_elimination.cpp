@@ -6,13 +6,13 @@ class Multiple_Possibility_Column_Elimination
 	public:
 		static bool compare_Row0_Row1_dimensions(int new_sudoku_3d[9][9][10], int row, int col) 
 		{
-					for (int poss = 1; poss < 10; poss++) 
-					{
-						if (new_sudoku_3d[row][col][poss] != new_sudoku_3d[row + 1][col][poss]) 
-						{
-							return false;
-						}
-					}
+			for (int poss = 1; poss < 10; poss++) 
+			{
+				if (new_sudoku_3d[row][col][poss] != new_sudoku_3d[row + 1][col][poss]) 
+				{
+					return false;
+				}
+			}
 			return true;
 		}
 
@@ -32,7 +32,7 @@ class Multiple_Possibility_Column_Elimination
 		{
 			for (int poss = 1; poss <= 9; poss++)
 			{
-				if ( row > 0 || row > 3 || row > 6 && new_sudoku_3d[row][col][poss] > -1 )
+				if ( ( row > 0 || row > 3 || row > 6 ) && ( new_sudoku_3d[row][col][poss] > 0 && new_sudoku_3d[row][col][poss] < 10 ) )
 				{
 					if ( compare_Row0_Row1_dimensions( new_sudoku_3d, row, col) &&
 						compare_Row0_Row2_dimensions( new_sudoku_3d, row, col) )
