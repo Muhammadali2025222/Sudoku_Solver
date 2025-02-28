@@ -15,15 +15,15 @@ using namespace std;
 class Sudoku_Processor
 {
 	public:
-		static void process_sudoku(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
+		static void process(int sudoku_2d[9][9], int sudoku_3d[9][9][10])
 		{
 			int row_reset_count = 0;
 			for (int row = 0; row <= 9; row++)
 			{
-				if (Solved_Sudoku :: is_sudoku_solved(new_sudoku_3d))
+				if (Solved_Sudoku :: is_sudoku_solved(sudoku_3d))
 				{
 					cout << "Sudoku is solved!";
-					Print_Updated_Sudoku_2d :: print_updated_sudoku_2d(sudoku_2d);
+					Sudoku_Printer :: print(sudoku_2d);
 
 					break;
 				}
@@ -33,7 +33,7 @@ class Sudoku_Processor
 					row_reset_count++;
 					if( row_reset_count == 10)
 					{
-						Print_Updated_Sudoku_2d :: print_updated_sudoku_2d(sudoku_2d);
+						Sudoku_Printer :: print(sudoku_2d);
 						break;
 					}
 					row = -1; 
@@ -42,9 +42,9 @@ class Sudoku_Processor
 				{
 					for (int col = 0; col < 9; col++)
 					{
-						if (Fixed_Value_Checker :: is_value_fixed(sudoku_2d, new_sudoku_3d, row, col))
+						if (Fixed_Value_Checker :: is_value_fixed(sudoku_2d, sudoku_3d, row, col))
 						{
-							Elimination_Implementor :: perform_elimination(sudoku_2d, new_sudoku_3d, row, col);
+							Elimination_Handler :: perform_elimination(sudoku_2d, sudoku_3d, row, col);
 						}
 					}
 				}

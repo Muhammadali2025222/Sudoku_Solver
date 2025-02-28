@@ -4,7 +4,7 @@
 class Sudoku_3d_Creator
 {
 	public:
-		static void create(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10])
+		static void create(int sudoku_2d[9][9], int sudoku_3d[9][9][10])
 		{
 			for (int row = 0; row < 9; row++)
 			{
@@ -12,18 +12,18 @@ class Sudoku_3d_Creator
 				{
 					if (sudoku_2d[ row ][ col ] > 0 && sudoku_2d[ row ][ col ] < 10)
 					{
-						new_sudoku_3d[ row ][ col ][ 0 ] = sudoku_2d[ row ][ col ] ;
+						sudoku_3d[ row ][ col ][ 0 ] = sudoku_2d[ row ][ col ] ;
 						for (int poss = 1 ; poss < 10 ; poss ++)
 						{
-							new_sudoku_3d[ row ][ col ][ poss ] = -1;
+							sudoku_3d[ row ][ col ][ poss ] = -1;
 						}
 					}
 					else
 					{
-						new_sudoku_3d[ row ][ col ][ 0 ] = -1;
+						sudoku_3d[ row ][ col ][ 0 ] = -1;
 						for (int poss = 1 ; poss < 10 ; poss ++)
 						{
-							new_sudoku_3d[ row ][ col ][ poss ] = poss ;
+							sudoku_3d[ row ][ col ][ poss ] = poss ;
 						}
 					}
 				}

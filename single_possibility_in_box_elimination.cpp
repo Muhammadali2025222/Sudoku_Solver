@@ -4,7 +4,7 @@
 class Single_Possibility_In_Box_Elimination
 {
 	public:
-		static void single_possibility_in_box_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
+		static void single_possibility_in_box_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			int box_start_row = (row/3)*3;
 			int box_start_col = (col/3)*3;
@@ -17,7 +17,7 @@ class Single_Possibility_In_Box_Elimination
 				{
 					for (int box_col = box_start_col; box_col < box_start_col + 3; box_col++)
 					{
-						if (new_sudoku_3d[box_row][box_col][poss] == poss)
+						if (sudoku_3d[box_row][box_col][poss] == poss)
 						{
 							count++;
 							last_row = box_row;

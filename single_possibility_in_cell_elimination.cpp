@@ -4,16 +4,16 @@
 class Single_Possibility_In_Cell_Elimination
 {
 	public:
-		static void single_possibility_in_cell_eliminator(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
+		static void single_possibility_in_cell_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			int count = 0;
 			int last_possibility = 0;
 			for (int poss = 1; poss <= 9; poss++)
 			{
-				if (new_sudoku_3d[row][col][poss] > -1)
+				if (sudoku_3d[row][col][poss] > -1)
 				{
 					count++;
-					last_possibility = new_sudoku_3d[row][col][poss];
+					last_possibility = sudoku_3d[row][col][poss];
 				}
 			}
 			if (count == 1)

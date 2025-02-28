@@ -8,7 +8,7 @@ using namespace std;
 class Fixed_Value_Checker
 {
 	public:
-		static bool is_value_fixed(int sudoku_2d[9][9], int new_sudoku_3d[9][9][10], int row, int col)
+		static bool is_value_fixed(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			if (sudoku_2d[row][col] < 0 || sudoku_2d[row][col] > 9)
 			{
@@ -19,7 +19,7 @@ class Fixed_Value_Checker
                 cout << "3d sudoku: ";
 				for (int poss = 0; poss < 10; poss++)
 				{
-					cout << new_sudoku_3d[row][col][poss] << "\t";
+					cout << sudoku_3d[row][col][poss] << "\t";
 				}
 				cout << "\n";
 				return true;
@@ -33,7 +33,7 @@ class Fixed_Value_Checker
 				cout << "3d sudoku: ";
 				for (int poss = 0; poss < 10; poss++)
 				{
-					cout << new_sudoku_3d[row][col][poss] << "\t";
+					cout << sudoku_3d[row][col][poss] << "\t";
 				}
 				cout << "\n";
                 return false;

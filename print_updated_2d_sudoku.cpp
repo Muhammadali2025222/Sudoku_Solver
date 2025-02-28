@@ -4,10 +4,10 @@
 #include <iostream>
 using namespace std;
 
-class Print_Updated_Sudoku_2d
+class Sudoku_Printer
 {
 	public:
-		static void print_updated_sudoku_2d(int sudoku_2d[9][9])
+		static void print(int sudoku_2d[9][9])
 		{
 			cout << "Sudoku 2d : \n ";
 			for (int row = 0; row < 9; row++)

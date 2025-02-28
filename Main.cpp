@@ -123,10 +123,10 @@ int main()
 		},
 	};
 	
-	int new_sudoku_3d[9][9][10];
+	int sudoku_3d[9][9][10];
 	
-	Sudoku_3d_Creator :: create(sudoku_2d ,new_sudoku_3d);
+	Sudoku_3d_Creator :: create(sudoku_2d ,sudoku_3d);
 	
-	Sudoku_Processor :: process_sudoku(sudoku_2d, new_sudoku_3d);
+	Sudoku_Processor :: process(sudoku_2d, sudoku_3d);
 
 }
