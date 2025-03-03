@@ -1,10 +1,10 @@
 #ifndef multiple_possibility_column_elimination_cpp
 #define multiple_possibility_column_elimination_cpp
 
-class Multiple_Possibility_Column_Elimination
+class Column_Possibility_Eliminator
 {
 	public:
-		static bool compare_Row0_Row1_dimensions(int sudoku_3d[9][9][10], int row, int col) 
+		static bool compare_first_two_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
 		{
 			for (int poss = 1; poss < 10; poss++) 
 			{
@@ -16,7 +16,7 @@ class Multiple_Possibility_Column_Elimination
 			return true;
 		}
 
-		static bool compare_Row0_Row2_dimensions(int sudoku_3d[9][9][10], int row, int col) 
+		static bool compare_first_and_third_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
 		{
 			for (int poss = 1; poss < 10; poss++) 
 			{
@@ -28,14 +28,14 @@ class Multiple_Possibility_Column_Elimination
 			return true;
 		}
 
-		static void multiple_possibility_column_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			for (int poss = 1; poss <= 9; poss++)
 			{
 				if ( ( row > 0 || row > 3 || row > 6 ) && ( sudoku_3d[row][col][poss] > 0 && sudoku_3d[row][col][poss] < 10 ) )
 				{
-					if ( compare_Row0_Row1_dimensions( sudoku_3d, row, col) &&
-						compare_Row0_Row2_dimensions( sudoku_3d, row, col) )
+					if ( compare_first_two_cells_in_row( sudoku_3d, row, col) &&
+					compare_first_and_third_cells_in_row( sudoku_3d, row, col) )
 					{
 						for (int remove_row = 0; remove_row < 9; remove_row++)
 						{
@@ -45,7 +45,7 @@ class Multiple_Possibility_Column_Elimination
 							}
 						}
 					}
-					else if ( compare_Row0_Row2_dimensions( sudoku_3d, row, col ) )
+					else if ( compare_first_two_cells_in_row( sudoku_3d, row, col ) )
 					{
 						for (int remove_row = 0; remove_row < 9; remove_row++)
 						{
@@ -55,7 +55,7 @@ class Multiple_Possibility_Column_Elimination
 							}
 						}
 					}
-					else if ( compare_Row0_Row2_dimensions( sudoku_3d, row, col ) )
+					else if ( compare_first_and_third_cells_in_row( sudoku_3d, row, col ) )
 					{
 						for (int remove_row = 0; remove_row < 9; remove_row++)
 						{

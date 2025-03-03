@@ -1,10 +1,10 @@
 #ifndef single_possibility_in_cell_elimination_cpp
 #define single_possibility_in_cell_elimination_cpp
 
-class Single_Possibility_In_Cell_Elimination
+class Cell_Possibility_Eliminator
 {
 	public:
-		static void single_possibility_in_cell_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			int count = 0;
 			int last_possibility = 0;

@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "elimination_implementor.cpp"
-#include "fixed_value_checker.cpp"
+#include "elimination_handler.cpp"
+#include "empty_cell_checker.cpp"
 
 #include "Solved_sudoku.cpp"
 
@@ -42,7 +42,7 @@ class Sudoku_Processor
 				{
 					for (int col = 0; col < 9; col++)
 					{
-						if (Fixed_Value_Checker :: is_value_fixed(sudoku_2d, sudoku_3d, row, col))
+						if (Empty_Cell_Checker :: is_cell_empty(sudoku_2d, sudoku_3d, row, col))
 						{
 							Elimination_Handler :: perform_elimination(sudoku_2d, sudoku_3d, row, col);
 						}

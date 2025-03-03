@@ -1,14 +1,14 @@
-#ifndef fixed_value_box_elimination_cpp
-#define fixed_value_box_elimination_cpp
+#ifndef solved_value_box_elimination_cpp
+#define solved_value_box_elimination_cpp
 
-class Fixed_Value_Box_Elimination
+class Box_Elimination
 {
 	public:
 
-		static void fixed_value_box_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
-			int fixed_value = sudoku_2d[row][col];
-			if (fixed_value > 0 && fixed_value < 10 )
+			int solved_value = sudoku_2d[row][col];
+			if (solved_value > 0 && solved_value < 10 )
 			{
 				int box_start_row = (row/3)*3;
 				int box_start_col = (col/3)*3;
@@ -19,7 +19,7 @@ class Fixed_Value_Box_Elimination
 					{
 						for (int poss = 1; poss <= 9; poss++)
 						{
-							if (sudoku_3d[box_row][box_col][poss] == fixed_value)
+							if (sudoku_3d[box_row][box_col][poss] == solved_value)
 							{
 								sudoku_3d[box_row][box_col][poss] = -1;
 							}

@@ -1,10 +1,10 @@
 #ifndef single_possibility_in_box_elimination_cpp
 #define single_possibility_in_box_elimination_cpp
 
-class Single_Possibility_In_Box_Elimination
+class Box_Possibility_Eliminator
 {
 	public:
-		static void single_possibility_in_box_eliminator(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			int box_start_row = (row/3)*3;
 			int box_start_col = (col/3)*3;

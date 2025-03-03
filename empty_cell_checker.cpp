@@ -1,18 +1,18 @@
-#ifndef fixed_value_checker_cpp
-#define fixed_value_checker_cpp
+#ifndef empty_cell_checker_cpp
+#define empty_cell_checker_cpp
 
 #include <iostream>
 
 using namespace std;
 
-class Fixed_Value_Checker
+class Empty_Cell_Checker
 {
 	public:
-		static bool is_value_fixed(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static bool is_cell_empty(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
 			if (sudoku_2d[row][col] < 0 || sudoku_2d[row][col] > 9)
 			{
-				cout << "Cell [" << row << "][" << col << "] has no fixed value (Multiple possibilities)\n";
+				cout << "Cell [" << row << "][" << col << "] has no solved value (Multiple possibilities)\n";
 				
                 cout << "2d sudoku: " << sudoku_2d[row][col] << "\n";
 				
@@ -26,7 +26,7 @@ class Fixed_Value_Checker
 			}
 			else
 			{
-				cout << "Cell [" << row << "][" << col << "] has fixed value: " << sudoku_2d[row][col] << "\n";
+				cout << "Cell [" << row << "][" << col << "] has solved value: " << sudoku_2d[row][col] << "\n";
 				
                 cout << "2d sudoku: " << sudoku_2d[row][col] << "\n";
 
