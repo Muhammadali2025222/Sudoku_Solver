@@ -1,12 +1,16 @@
 #ifndef multiple_possibility_row_elimination_cpp
 #define multiple_possibility_row_elimination_cpp
 
+#include "validated_3d_sudoku.cpp"
+
+#include "possibility_limiter.cpp"
+
 class Row_Possibility_Eliminator
 {
 	public:
 		static bool compare_first_two_cells_in_col(int sudoku_3d[9][9][10], int row, int col) 
 		{
-			for (int poss = 1; poss < 10; poss++) 
+			for (int poss = min_poss; poss < max_poss; poss++) 
 			{
 				if (sudoku_3d[ row ][ col ][ poss ] != sudoku_3d[ row ][ col + 1 ][ poss ]) 
 				{
@@ -18,7 +22,7 @@ class Row_Possibility_Eliminator
 
 		static bool compare_first_and_third_cells_in_col(int sudoku_3d[9][9][10], int row, int col) 
 		{
-			for (int poss = 1; poss < 10; poss++) 
+			for (int poss = min_poss; poss < max_poss; poss++) 
 			{
 				if (sudoku_3d[ row ][ col ][ poss ] != sudoku_3d[ row ][ col + 2 ][ poss ]) 
 				{
@@ -30,12 +34,12 @@ class Row_Possibility_Eliminator
 
 		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
 		{
-			for (int poss = 1; poss <= 9; poss++)
+			for (int poss = min_poss; poss < max_poss; poss++)
 			{
-				if ( ( col > 0 || col > 3 || col > 6 ) && ( sudoku_3d[row][col][poss] > 0 && sudoku_3d[row][col][poss] < 10 ) )
+				if (( col > 0 || col > 3 || col > 6 ) &&  (Sudoku_3d_Validator :: validate(sudoku_3d, row, col)))
 				{
-					if ( compare_first_two_cells_in_col( sudoku_3d, row, col ) &&
-					compare_first_and_third_cells_in_col( sudoku_3d, row, col ) )
+					if ( compare_first_two_cells_in_col( sudoku_3d, row, col) &&
+					compare_first_and_third_cells_in_col( sudoku_3d, row, col))
 					{
 						for (int remove_col = 0; remove_col < 9; remove_col++)
 						{
@@ -45,7 +49,7 @@ class Row_Possibility_Eliminator
 							}
 						}
 					}
-					else if ( compare_first_two_cells_in_col( sudoku_3d, row, col ) )
+					else if ( compare_first_two_cells_in_col( sudoku_3d, row, col))
 					{
 						for (int remove_col = 0; remove_col < 9; remove_col++)
 						{
@@ -55,7 +59,7 @@ class Row_Possibility_Eliminator
 							}
 						}
 					}
-					else if ( compare_first_and_third_cells_in_col( sudoku_3d, row, col ) )
+					else if ( compare_first_and_third_cells_in_col( sudoku_3d, row, col))
 					{
 						for (int remove_col = 0; remove_col < 9; remove_col++)
 						{

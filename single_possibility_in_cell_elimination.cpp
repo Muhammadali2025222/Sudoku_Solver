@@ -1,6 +1,10 @@
 #ifndef single_possibility_in_cell_elimination_cpp
 #define single_possibility_in_cell_elimination_cpp
 
+#include "possibility_limiter.cpp"
+
+#include "validated_3d_sudoku.cpp"
+
 class Cell_Possibility_Eliminator
 {
 	public:
@@ -8,9 +12,9 @@ class Cell_Possibility_Eliminator
 		{
 			int count = 0;
 			int last_possibility = 0;
-			for (int poss = 1; poss <= 9; poss++)
+			for (int poss = min_poss; poss < max_poss; poss++)
 			{
-				if (sudoku_3d[row][col][poss] > -1)
+				if (Sudoku_3d_Validator :: validate(sudoku_3d, row, col))
 				{
 					count++;
 					last_possibility = sudoku_3d[row][col][poss];

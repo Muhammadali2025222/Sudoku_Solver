@@ -1,7 +1,8 @@
-#ifndef print_updated_2d_sudoku_cpp
-#define print_updated_2d_sudoku_cpp
+#ifndef print_sudoku_2d_cpp
+#define print_sudoku_2d_cpp
 
 #include <iostream>
+
 using namespace std;
 
 class Sudoku_Printer
