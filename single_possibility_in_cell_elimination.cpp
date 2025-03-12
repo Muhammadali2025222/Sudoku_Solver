@@ -3,18 +3,18 @@
 
 #include "possibility_limiter.cpp"
 
-#include "validated_3d_sudoku.cpp"
+#include "possibilities_validator.cpp"
 
 class Cell_Possibility_Eliminator
 {
 	public:
-		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
 			int count = 0;
 			int last_possibility = 0;
-			for (int poss = min_poss; poss < max_poss; poss++)
+			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (Sudoku_3d_Validator :: validate(sudoku_3d, row, col))
+				if (Possibilities_Validator :: validate(sudoku_3d, row, col))
 				{
 					count++;
 					last_possibility = sudoku_3d[row][col][poss];
@@ -22,7 +22,7 @@ class Cell_Possibility_Eliminator
 			}
 			if (count == 1)
 			{
-				sudoku_2d[row][col] = last_possibility;
+				sudoku_3d[row][col][0] = last_possibility;
 			}
 		}
 };

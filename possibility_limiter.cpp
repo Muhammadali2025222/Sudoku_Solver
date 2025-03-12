@@ -1,7 +1,7 @@
 #ifndef possibility_limiter_cpp
 #define possibility_limiter_cpp
     
-    const int min_poss = 1;
-    const int max_poss = 10;
+    const int MIN_POSS = 1;
+    const int MAX_POSS = 10;
     
 #endif

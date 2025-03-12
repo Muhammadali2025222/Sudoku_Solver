@@ -1,7 +1,7 @@
 #ifndef multiple_possibility_column_elimination_cpp
 #define multiple_possibility_column_elimination_cpp
 
-#include "validated_3d_sudoku.cpp"
+#include "possibilities_validator.cpp"
 
 #include "possibility_limiter.cpp"
 
@@ -10,7 +10,7 @@ class Column_Possibility_Eliminator
 	public:
 		static bool compare_first_two_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
 		{
-			for (int poss = min_poss; poss < max_poss; poss++) 
+			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
 				if (sudoku_3d[row][col][poss] != sudoku_3d[row + 1][col][poss]) 
 				{
@@ -22,7 +22,7 @@ class Column_Possibility_Eliminator
 
 		static bool compare_first_and_third_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
 		{
-			for (int poss = min_poss; poss < max_poss; poss++) 
+			for (int poss = MIN_POSS; poss < MAX_POSS; poss++)  
 			{
 				if (sudoku_3d[row][col][poss] != sudoku_3d[row + 2][col][poss]) 
 				{
@@ -32,11 +32,11 @@ class Column_Possibility_Eliminator
 			return true;
 		}
 
-		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
-			for (int poss = min_poss; poss < max_poss; poss++)
+			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (( row > 0 || row > 3 || row > 6 ) &&  (Sudoku_3d_Validator :: validate(sudoku_3d, row, col)))
+				if (( row > 0 || row > 3 || row > 6 ) &&  (Possibilities_Validator :: validate(sudoku_3d, row, col)))
 				{
 					if ( compare_first_two_cells_in_row( sudoku_3d, row, col) &&
 					compare_first_and_third_cells_in_row( sudoku_3d, row, col))

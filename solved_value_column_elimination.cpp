@@ -6,12 +6,12 @@
 class Column_Elimination
 {
 	public:
-		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
-			int solved_value = sudoku_2d[row][col];
+			int solved_value = sudoku_3d[row][col][0];
 			for (int row_3d = 0; row_3d < 9; row_3d++)
 			{
-				for (int poss = min_poss; poss < max_poss; poss++)
+				for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 				{
 					if (sudoku_3d[row_3d][col][poss] == solved_value)
 					{

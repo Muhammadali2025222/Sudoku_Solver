@@ -8,11 +8,13 @@
 
 #include "Solved_sudoku.cpp"
 
-#include "print_sudoku_2d.cpp"
+#include "sudoku_printer.cpp"
+
+#include "print_sudoku_3d.cpp"
 
 #include "possibility_limiter.cpp"
 
-#include "validated_3d_sudoku.cpp"
+#include "possibilities_validator.cpp"
 
 using namespace std;
 
@@ -23,38 +25,14 @@ class Sudoku_Processor
 		{
 			int count_unsolved_possibility = 0;
 			int prev_unsolved_possibility_count = -1;
-			int row_reset_count = 0;
-			for (int row = 0; row < 9; row++)
+
+			for (int row = 0; row <= 9; row++)
 			{
-				if (Solved_Sudoku :: is_sudoku_solved(sudoku_3d))
-				{
-					cout << "Sudoku is solved!";
-					Sudoku_Printer :: print(sudoku_2d);
-					break;
-				}
-				
-				else
-				{
-					for (int col = 0; col < 9; col++)
-					{
-						if (Solved_Cell_Checker :: is_cell_solved(sudoku_2d, sudoku_3d, row, col))
-						{
-							Elimination_Handler :: perform_elimination(sudoku_2d, sudoku_3d, row, col);
-						}
-						for (int poss = min_poss; poss < max_poss; poss++)
-						{
-							if (Sudoku_3d_Validator :: validate(sudoku_3d, row, col))
-							{
-								count_unsolved_possibility++;
-							}
-						}
-					}
-				}
-				if (row == 8)
+				if (row == 9)
 				{
 					if(count_unsolved_possibility == prev_unsolved_possibility_count)
 					{
-						Sudoku_Printer :: print(sudoku_2d);
+						Sudoku_Printer :: print(sudoku_3d);
 						cout << "No changes in possibilities. Breaking loop.\n";
 						break;
 					}
@@ -64,7 +42,33 @@ class Sudoku_Processor
 						count_unsolved_possibility = 0;
 						row = -1; 
 					}
+				}	
+				else
+				{
+					for (int col = 0; col < 9; col++)
+					{
+						if (Solved_Cell_Checker :: is_cell_solved(sudoku_2d, sudoku_3d, row, col))
+						{
+							Elimination_Handler :: perform_elimination(sudoku_2d, sudoku_3d, row, col);
+							// Sudoku_3d_Printer :: print(sudoku_3d);
+						}
+						for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
+						{
+							if (Possibilities_Validator :: validate(sudoku_3d, row, col))
+							{
+								count_unsolved_possibility++;
+							}
+						}
+					}
 				}
+				
+				if (Solved_Sudoku :: is_sudoku_solved(sudoku_3d))
+				{
+					cout << "Sudoku is solved!";
+					// Sudoku_Printer :: print(sudoku_2d);
+					break;
+				}
+				
 			}
 		}
 		

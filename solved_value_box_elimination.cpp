@@ -8,12 +8,12 @@
 class Box_Elimination
 {
 	public:
-		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{	
-			int solved_value = sudoku_2d[row][col];
+			int solved_value = sudoku_3d[row][col][0];
 
-            int box_start_row = 0;
-            int box_start_col = 0;
+            int box_start_row;
+            int box_start_col;
 
 			Box_Start_Determiner :: determine(row, col, box_start_row, box_start_col);
 
@@ -21,7 +21,7 @@ class Box_Elimination
 			{
 				for (int box_col = box_start_col; box_col < box_start_col + 3; box_col++)
 				{
-					for (int poss = min_poss; poss < max_poss; poss++)
+					for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 					{
 						if (sudoku_3d[box_row][box_col][poss] == solved_value)
 						{

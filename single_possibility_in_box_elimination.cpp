@@ -8,12 +8,12 @@
 class Box_Possibility_Eliminator
 {
 	public:
-		static void eliminate(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
-			int box_start_row = 0;
-            int box_start_col = 0;
+			int box_start_row;
+            int box_start_col;
 
-			for (int poss = min_poss; poss < max_poss; poss++)
+			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
 				int count = 0;
 				int last_row = 0, last_col = 0;
@@ -34,7 +34,7 @@ class Box_Possibility_Eliminator
 				}
 				if (count == 1)
 				{
-					sudoku_2d[last_row][last_col] = poss;
+					sudoku_3d[last_row][last_col][0] = poss;
 				}
 			}
 		}

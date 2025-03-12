@@ -1,21 +1,21 @@
-#ifndef validated_3d_sudoku_cpp
-#define validated_3d_sudoku_cpp
+#ifndef possibilities_validator_cpp
+#define possibilities_validator_cpp
 
 #include "possibility_limiter.cpp"
 
-class Sudoku_3d_Validator
+class Possibilities_Validator
 {
 	public:
 		static bool validate(int sudoku_3d[9][9][10], int row, int col)
 		{
-            for (int poss = min_poss; poss < max_poss; poss++)
+            for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
             {
                 if (sudoku_3d[row][col][poss] > 0 && sudoku_3d[row][col][poss] < 10)
 			    {
 				    return true;
 			    }
-                return false;
             }
+			return false;
 		}
 };
 

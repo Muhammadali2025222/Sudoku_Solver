@@ -18,7 +18,7 @@ class Sudoku_3d_Printer
 			{
 				for (int col = 0; col < 9; col++)
 				{  
-                    for (int poss = min_poss; poss < max_poss; poss++)
+                    for (int poss = MIN_POSS - 1; poss < MAX_POSS; poss++)
                     {
                         cout << sudoku_3d[ row ][ col ][ poss ] << "\t" ;
                     }

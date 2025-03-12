@@ -19,7 +19,7 @@ class Sudoku_3d_Creator
 					{
 						sudoku_3d[ row ][ col ][ 0 ] = sudoku_2d[ row ][ col ] ;
 
-						for (int poss = min_poss; poss < max_poss; poss ++)
+						for (int poss = MIN_POSS; poss < MAX_POSS; poss ++)
 						{
 							sudoku_3d[ row ][ col ][ poss ] = -1;
 						}
@@ -27,7 +27,7 @@ class Sudoku_3d_Creator
 					else
 					{
 						sudoku_3d[ row ][ col ][ 0 ] = -1;
-						for (int poss = min_poss; poss < max_poss; poss ++)
+						for (int poss = MIN_POSS; poss < MAX_POSS; poss ++)
 						{
 							sudoku_3d[ row ][ col ][ poss ] = poss ;
 						}
