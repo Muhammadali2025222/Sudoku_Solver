@@ -13,7 +13,7 @@
 #include "multiple_possibility_row_elimination.cpp"
 #include "multiple_possibility_column_elimination.cpp"
 
-#include "sudoku_3d_updater.cpp"
+#include "sudoku_possibilities_updater.cpp"
 
 #include "Solved_sudoku.cpp"
 
@@ -22,20 +22,42 @@ using namespace std;
 class Elimination_Handler
 {
 	public:
-        static void perform_elimination(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
-        {			      	
-			Row_Elimination :: eliminate(sudoku_3d, row, col);
-			Column_Elimination :: eliminate(sudoku_3d, row, col);
-			Box_Elimination :: eliminate(sudoku_3d, row, col);
-			
-			Box_Possibility_Eliminator :: eliminate(sudoku_3d, row, col);
-
-			Sudoku_3d_Updater :: update_possibilities(sudoku_2d, sudoku_3d, row, col);
-
-			Cell_Possibility_Eliminator :: eliminate(sudoku_3d, row, col);
-
-			Row_Possibility_Eliminator :: eliminate(sudoku_3d, row, col);
-			Column_Possibility_Eliminator :: eliminate(sudoku_3d, row, col);
+        static bool perform_elimination(int sudoku_2d[9][9], int sudoku_3d[9][9][10], int row, int col)
+        {
+			bool is_eliminated = false;
+			if (Row_Elimination :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Column_Elimination :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Box_Elimination :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Box_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Sudoku_Possibilities_Updater :: update(sudoku_2d, sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Cell_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Row_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}
+			if (Column_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
+			{
+				is_eliminated = true;
+			}			
+			return is_eliminated;
         }
 
 };

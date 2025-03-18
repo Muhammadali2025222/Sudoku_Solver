@@ -4,6 +4,8 @@
 
 #include "sudoku_processor.cpp"
 
+#include "sudoku_printer.cpp"
+
 using namespace std;
 
 
@@ -26,4 +28,6 @@ int main()
 	Sudoku_3d_Creator :: create(sudoku_2d ,sudoku_3d);
 	
 	Sudoku_Processor :: process(sudoku_2d, sudoku_3d);
+
+	Sudoku_Printer :: print(sudoku_3d);
 }

@@ -1,7 +1,7 @@
-#ifndef sudoku_0th_index_validator_cpp
-#define sudoku_0th_index_validator_cpp
+#ifndef zeroth_index_validator_cpp
+#define zeroth_index_validator_cpp
 
-class Zeroth_Index_Validator
+class Zeroth_Index_Validator 
 {
 	public:
 		static bool validate(int sudoku_3d[9][9][10], int row, int col)

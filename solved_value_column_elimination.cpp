@@ -6,9 +6,11 @@
 class Column_Elimination
 {
 	public:
-		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
+			bool is_substituted = false;
 			int solved_value = sudoku_3d[row][col][0];
+			
 			for (int row_3d = 0; row_3d < 9; row_3d++)
 			{
 				for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
@@ -16,9 +18,11 @@ class Column_Elimination
 					if (sudoku_3d[row_3d][col][poss] == solved_value)
 					{
 						sudoku_3d[row_3d][col][poss] = -1;
+						is_substituted = true;
 					}
 				}
-			}	
+			}
+			return is_substituted;	
 		}
 };
 

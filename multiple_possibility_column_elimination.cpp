@@ -8,11 +8,11 @@
 class Column_Possibility_Eliminator
 {
 	public:
-		static bool compare_first_two_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
+		static bool compare_two_cells_in_row(int sudoku_3d[9][9][10], int row, int col, int next_row) 
 		{
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (sudoku_3d[row][col][poss] != sudoku_3d[row + 1][col][poss]) 
+				if (sudoku_3d[row][col][poss] != sudoku_3d[next_row][col][poss]) 
 				{
 					return false;
 				}
@@ -20,57 +20,40 @@ class Column_Possibility_Eliminator
 			return true;
 		}
 
-		static bool compare_first_and_third_cells_in_row(int sudoku_3d[9][9][10], int row, int col) 
+		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
-			for (int poss = MIN_POSS; poss < MAX_POSS; poss++)  
-			{
-				if (sudoku_3d[row][col][poss] != sudoku_3d[row + 2][col][poss]) 
-				{
-					return false;
-				}
-			}
-			return true;
-		}
-
-		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
-		{
+			bool is_substituted = false;
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (( row > 0 || row > 3 || row > 6 ) &&  (Possibilities_Validator :: validate(sudoku_3d, row, col)))
+				if (( row < 3 || row < 6 || row < 9 ) && (Possibilities_Validator :: validate(sudoku_3d, row, col)))
 				{
-					if ( compare_first_two_cells_in_row( sudoku_3d, row, col) &&
-					compare_first_and_third_cells_in_row( sudoku_3d, row, col))
+					int next_row = row + 1;
+					if ( compare_two_cells_in_row( sudoku_3d, row, col, next_row))
 					{
 						for (int remove_row = 0; remove_row < 9; remove_row++)
 						{
-							if ( remove_row != row && remove_row != row + 1 && remove_row != row + 2)
+							if (remove_row != row && remove_row != next_row )
 							{
 								sudoku_3d[remove_row][col][poss] = -1;
+								is_substituted = true;
 							}
 						}
 					}
-					else if ( compare_first_two_cells_in_row( sudoku_3d, row, col))
+					next_row = row + 2;
+					if ( compare_two_cells_in_row( sudoku_3d, row, col, next_row))
 					{
 						for (int remove_row = 0; remove_row < 9; remove_row++)
 						{
-							if (remove_row != row && remove_row != row + 1)
+							if (remove_row != row && remove_row != next_row )
 							{
 								sudoku_3d[remove_row][col][poss] = -1;
-							}
-						}
-					}
-					else if ( compare_first_and_third_cells_in_row( sudoku_3d, row, col))
-					{
-						for (int remove_row = 0; remove_row < 9; remove_row++)
-						{
-							if (remove_row != row && remove_row != row + 2)
-							{
-								sudoku_3d[remove_row][col][poss] = -1;
+								is_substituted = true;
 							}
 						}
 					}
 				}
 			}
+			return is_substituted;
 		}
 };
 

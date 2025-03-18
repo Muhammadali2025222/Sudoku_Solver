@@ -8,7 +8,7 @@
 class Cell_Possibility_Eliminator
 {
 	public:
-		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
 		{
 			int count = 0;
 			int last_possibility = 0;
@@ -23,7 +23,9 @@ class Cell_Possibility_Eliminator
 			if (count == 1)
 			{
 				sudoku_3d[row][col][0] = last_possibility;
+				return true;
 			}
+			return false;
 		}
 };
 

@@ -1,8 +1,8 @@
 #ifndef solved_cell_checker_cpp
 #define solved_cell_checker_cpp
 
-#include "sudoku_0th_index_validator.cpp"
-
+#include "zeroth_index_validator.cpp"
+#include "possibility_limiter.cpp"
 #include <iostream>
 
 using namespace std;
@@ -19,7 +19,7 @@ class Solved_Cell_Checker
                 cout << "2d sudoku: " << sudoku_3d[row][col][0] << "\n";
 
 				cout << "3d sudoku: ";
-				for (int poss = MIN_POSS - 1; poss < MAX_POSS; poss++)
+				for (int poss = 0; poss < MAX_POSS; poss++)
 				{
 					cout << sudoku_3d[row][col][poss] << "\t";
 				}
@@ -33,7 +33,7 @@ class Solved_Cell_Checker
                 cout << "2d sudoku: " << sudoku_3d[row][col][0] << "\n";
 				
                 cout << "3d sudoku: ";
-				for (int poss = MIN_POSS - 1; poss < MAX_POSS; poss++)
+				for (int poss = 0; poss < MAX_POSS; poss++)
 				{
 					cout << sudoku_3d[row][col][poss] << "\t";
 				}

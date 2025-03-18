@@ -8,8 +8,9 @@
 class Box_Elimination
 {
 	public:
-		static void eliminate(int sudoku_3d[9][9][10], int row, int col)
-		{	
+		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
+		{
+			bool is_substituted = false;	
 			int solved_value = sudoku_3d[row][col][0];
 
             int box_start_row;
@@ -26,10 +27,12 @@ class Box_Elimination
 						if (sudoku_3d[box_row][box_col][poss] == solved_value)
 						{
 							sudoku_3d[box_row][box_col][poss] = -1;
+							is_substituted = true;
 						}
 					}
 				}
 			}
+			return is_substituted;
 		}
 };
 

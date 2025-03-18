@@ -8,14 +8,15 @@ class Possibilities_Validator
 	public:
 		static bool validate(int sudoku_3d[9][9][10], int row, int col)
 		{
+			bool is_substituted = false;
             for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
             {
                 if (sudoku_3d[row][col][poss] > 0 && sudoku_3d[row][col][poss] < 10)
 			    {
-				    return true;
+				    is_substituted = true;
 			    }
             }
-			return false;
+			return is_substituted;
 		}
 };
 
