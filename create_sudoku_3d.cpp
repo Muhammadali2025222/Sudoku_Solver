@@ -3,33 +3,33 @@
 
 #include "sudoku_validator.cpp"
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 class Sudoku_3d_Creator
 {
 	public:
-		static void create(int sudoku_2d[9][9], int sudoku_3d[9][9][10])
+		static void create(int sudoku_2d[MAX_ROW][MAX_COL], int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS])
 		{
 			
-			for (int row = 0; row < 9; row++)
+			for (int row = MIN_ROW; row < MAX_ROW; row++)
 			{
-				for (int col = 0; col < 9; col++)
+				for (int col = MIN_COL; col < MAX_COL; col++)
 				{
 					if (Sudoku_Validator :: validate_2d_sudoku(sudoku_2d, row, col))
 					{
-						sudoku_3d[ row ][ col ][ 0 ] = sudoku_2d[ row ][ col ] ;
+						sudoku_3d[row][col][SOLVED_INDEX] = sudoku_2d[row][col] ;
 
 						for (int poss = MIN_POSS; poss < MAX_POSS; poss ++)
 						{
-							sudoku_3d[ row ][ col ][ poss ] = -1;
+							sudoku_3d[row][col][poss] = BLANK_INDEX;
 						}
 					}
 					else
 					{
-						sudoku_3d[ row ][ col ][ 0 ] = -1;
+						sudoku_3d[row][col][SOLVED_INDEX] = BLANK_INDEX;
 						for (int poss = MIN_POSS; poss < MAX_POSS; poss ++)
 						{
-							sudoku_3d[ row ][ col ][ poss ] = poss ;
+							sudoku_3d[row][col][poss] = poss ;
 						}
 					}
 				}

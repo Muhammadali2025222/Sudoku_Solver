@@ -6,11 +6,11 @@
 class Solved_Sudoku
 {
 	public:
-		static bool is_sudoku_solved(int sudoku_3d[9][9][10])
+		static bool is_sudoku_solved(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS])
 		{
-			for (int row = 0; row < 9; row++)
+			for (int row = MIN_ROW; row < MAX_ROW; row++)
 			{
-				for (int col = 0; col < 9; col++)
+				for (int col = MIN_COL; col < MAX_ROW; col++)
 				{
 					if (Sudoku_Validator :: validate_solved_value(sudoku_3d, row, col))
 					{

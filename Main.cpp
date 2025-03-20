@@ -6,12 +6,14 @@
 
 #include "sudoku_printer.cpp"
 
+#include "constants.cpp"
+
 using namespace std;
 
 
 int main()
 {
-	int sudoku_2d[9][9] = {
+	int sudoku_2d[MAX_ROW][MAX_COL] = {
 		{ 2, -1, -1,  3, -1,  1, -1, -1,  5},
 		{-1, -1, -1, -1,  4,  2,  6, -1, -1},
 		{-1,  5, -1, -1, -1, -1, -1,  8,  2},
@@ -23,11 +25,11 @@ int main()
 		{-1, -1, -1, -1,  3, -1, -1, -1, -1}
 	};
 
-	int sudoku_3d[9][9][10];
+	int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS];
 
 	Sudoku_3d_Creator :: create(sudoku_2d ,sudoku_3d);
 	
-	Sudoku_Processor :: process(sudoku_2d, sudoku_3d);
+	Sudoku_Processor :: process(sudoku_3d);
 
 	Sudoku_Printer :: print(sudoku_3d);
 }

@@ -3,15 +3,15 @@
 
 #include "box_start_determiner.cpp"
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 class Box_Elimination
 {
 	public:
-		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 		{
 			bool is_substituted = false;	
-			int solved_value = sudoku_3d[row][col][0];
+			int solved_value = sudoku_3d[row][col][SOLVED_INDEX];
 
             int box_start_row;
             int box_start_col;
@@ -26,7 +26,7 @@ class Box_Elimination
 					{
 						if (sudoku_3d[box_row][box_col][poss] == solved_value)
 						{
-							sudoku_3d[box_row][box_col][poss] = -1;
+							sudoku_3d[box_row][box_col][poss] = BLANK_INDEX;
 							is_substituted = true;
 						}
 					}

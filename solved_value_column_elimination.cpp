@@ -1,23 +1,23 @@
 #ifndef solved_value_column_elimination_cpp
 #define solved_value_column_elimination_cpp
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 class Column_Elimination
 {
 	public:
-		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 		{
 			bool is_substituted = false;
-			int solved_value = sudoku_3d[row][col][0];
+			int solved_value = sudoku_3d[row][col][SOLVED_INDEX];
 			
-			for (int row_3d = 0; row_3d < 9; row_3d++)
+			for (int row_3d = MIN_ROW; row_3d < MAX_ROW; row_3d++)
 			{
 				for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 				{
 					if (sudoku_3d[row_3d][col][poss] == solved_value)
 					{
-						sudoku_3d[row_3d][col][poss] = -1;
+						sudoku_3d[row_3d][col][poss] = BLANK_INDEX;
 						is_substituted = true;
 					}
 				}

@@ -3,12 +3,12 @@
 
 #include "sudoku_validator.cpp"
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 class Column_Possibility_Eliminator
 {
 	public:
-		static bool compare_two_cells_in_row(int sudoku_3d[9][9][10], int row, int col, int next_row) 
+		static bool compare_two_cells_in_row(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col, int next_row) 
 		{
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
@@ -20,7 +20,7 @@ class Column_Possibility_Eliminator
 			return false;
 		}
 
-		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 		{
 			bool is_substituted = false;
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
@@ -30,11 +30,11 @@ class Column_Possibility_Eliminator
 					int next_row = row + 1;
 					if ( compare_two_cells_in_row( sudoku_3d, row, col, next_row))
 					{
-						for (int remove_row = 0; remove_row < 9; remove_row++)
+						for (int remove_row = MIN_ROW; remove_row < MAX_ROW; remove_row++)
 						{
 							if (remove_row != row && remove_row != next_row )
 							{
-								sudoku_3d[remove_row][col][poss] = -1;
+								sudoku_3d[remove_row][col][poss] = BLANK_INDEX;
 								is_substituted = true;
 							}
 						}
@@ -42,11 +42,11 @@ class Column_Possibility_Eliminator
 					next_row = row + 2;
 					if ( compare_two_cells_in_row( sudoku_3d, row, col, next_row))
 					{
-						for (int remove_row = 0; remove_row < 9; remove_row++)
+						for (int remove_row = MIN_ROW; remove_row < MAX_ROW; remove_row++)
 						{
 							if (remove_row != row && remove_row != next_row )
 							{
-								sudoku_3d[remove_row][col][poss] = -1;
+								sudoku_3d[remove_row][col][poss] = BLANK_INDEX;
 								is_substituted = true;
 							}
 						}

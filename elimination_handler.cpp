@@ -22,7 +22,7 @@ using namespace std;
 class Elimination_Handler
 {
 	public:
-        static bool perform_elimination(int sudoku_3d[9][9][10], int row, int col)
+        static bool perform_elimination(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
         {
 			bool is_eliminated = false;
 			if (Row_Elimination :: eliminate(sudoku_3d, row, col))

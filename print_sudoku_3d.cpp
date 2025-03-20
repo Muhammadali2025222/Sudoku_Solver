@@ -1,7 +1,7 @@
 #ifndef print_sudoku_3d_cpp
 #define print_sudoku_3d_cpp
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 #include <iostream>
 
@@ -10,17 +10,17 @@ using namespace std;
 class Sudoku_3d_Printer
 {
     public:
-        static void print(int sudoku_3d[9][9][10])
+        static void print(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS])
         {
             
             cout<<"3d sudoku: \n "; 
-            for (int row = 0; row < 9; row++)
+            for (int row = MIN_ROW; row < MAX_ROW; row++)
 			{
-				for (int col = 0; col < 9; col++)
+				for (int col = MIN_COL; col < MAX_COL; col++)
 				{  
-                    for (int poss = MIN_POSS - 1; poss < MAX_POSS; poss++)
+                    for (int poss = SOLVED_INDEX; poss < MAX_POSS; poss++)
                     {
-                        cout << sudoku_3d[ row ][ col ][ poss ] << "\t" ;
+                        cout << sudoku_3d[row][col][poss] << "\t" ;
                     }
                     cout << "\n" ;
                 }

@@ -3,19 +3,20 @@
 
 #include "box_start_determiner.cpp"
 
-#include "possibility_limiter.cpp"
+#include "constants.cpp"
 
 class Box_Possibility_Eliminator
 {
 	public:
-		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
+		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 		{
 			int box_start_row;
             int box_start_col;
 
 			int last_possibilities;
-			int count = 0;
-			int curr_row = 0, curr_col = 0;
+			int count = START_COUNT;
+			int curr_row; 
+			int curr_col;
 
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
@@ -37,7 +38,7 @@ class Box_Possibility_Eliminator
 			}
 			if (count == 1)
 			{
-				sudoku_3d[curr_row][curr_col][0] = last_possibilities;
+				sudoku_3d[curr_row][curr_col][SOLVED_INDEX] = last_possibilities;
 				return true;
 			}
 			return false;

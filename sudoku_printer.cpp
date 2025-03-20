@@ -8,14 +8,14 @@ using namespace std;
 class Sudoku_Printer
 {
 	public:
-		static void print(int sudoku_3d[9][9][10])
+		static void print(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS])
 		{
 			cout << "Sudoku 2d : \n ";
-			for (int row = 0; row < 9; row++)
+			for (int row = MIN_ROW; row < MAX_ROW; row++)
 			{
-				for (int col = 0; col < 9; col++)
+				for (int col = MIN_COL; col < MAX_COL; col++)
 				{
-					cout << sudoku_3d[ row ][ col ][ 0 ] << "\t";
+					cout << sudoku_3d[row][col][SOLVED_INDEX] << "\t";
 				}
 				cout << "\n" ;
 			}
