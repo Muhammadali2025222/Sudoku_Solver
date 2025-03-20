@@ -1,7 +1,7 @@
 #ifndef Solved_sudoku_cpp
 #define Solved_sudoku_cpp
 
-#include "zeroth_index_validator.cpp"
+#include "sudoku_validator.cpp"
 
 class Solved_Sudoku
 {
@@ -12,7 +12,7 @@ class Solved_Sudoku
 			{
 				for (int col = 0; col < 9; col++)
 				{
-					if (Zeroth_Index_Validator :: validate(sudoku_3d, row, col))
+					if (Sudoku_Validator :: validate_solved_value(sudoku_3d, row, col))
 					{
 						return false;
 					}

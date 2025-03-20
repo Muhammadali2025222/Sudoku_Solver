@@ -1,7 +1,7 @@
 #ifndef multiple_possibility_row_elimination_cpp
 #define multiple_possibility_row_elimination_cpp
 
-#include "possibilities_validator.cpp"
+#include "sudoku_validator.cpp"
 
 #include "possibility_limiter.cpp"
 
@@ -12,12 +12,12 @@ class Row_Possibility_Eliminator
 		{
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (sudoku_3d[ row ][ col ][ poss ] != sudoku_3d[ row ][ next_col ][ poss ]) 
+				if (sudoku_3d[ row ][ col ][ poss ] = sudoku_3d[ row ][ next_col ][ poss ]) 
 				{
-					return false;
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 
 		static bool eliminate(int sudoku_3d[9][9][10], int row, int col)
@@ -25,7 +25,7 @@ class Row_Possibility_Eliminator
 			bool is_substituted = false;
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (( col < 3 || col < 6 || col < 9 ) && (Possibilities_Validator :: validate(sudoku_3d, row, col)))
+				if ((Sudoku_Validator :: validate_possibilities(sudoku_3d, row, col, poss)))
 				{
 					int next_col = col + 1;
 					if ( compare_two_cells_in_col( sudoku_3d, row, col, next_col))

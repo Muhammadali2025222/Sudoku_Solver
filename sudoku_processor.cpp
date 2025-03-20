@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "elimination_handler.cpp"
-#include "solved_cell_checker.cpp"
+#include "sudoku_validator.cpp"
 
 using namespace std;
 
@@ -18,22 +18,20 @@ class Sudoku_Processor
 			{
 				if (row == 9)
 				{
-					row = -1;
+					row = 0;
 				}
 			
 				else
 				{
 					for (int col = 0; col < 9; col++)
 					{
-						if (Solved_Cell_Checker :: is_cell_solved(sudoku_2d, sudoku_3d, row, col))
+						if (Sudoku_Validator :: validate_solved_value(sudoku_3d, row, col))
 						{
-							if (Elimination_Handler :: perform_elimination(sudoku_2d, sudoku_3d, row, col ))
+							if (Elimination_Handler :: perform_elimination(sudoku_3d, row, col ))
 							{}
 						}
 					}
-					
 				}
-				
 			}
 		}
 };

@@ -7,7 +7,6 @@ class Box_Start_Determiner
         static void determine(int row, int col, int &box_start_row, int &box_start_col)
         {
             box_start_row = (row/3)*3;
-
 			box_start_col = (col/3)*3;
         }
 };

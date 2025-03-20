@@ -2,8 +2,7 @@
 #define single_possibility_in_cell_elimination_cpp
 
 #include "possibility_limiter.cpp"
-
-#include "possibilities_validator.cpp"
+#include "sudoku_validator.cpp"
 
 class Cell_Possibility_Eliminator
 {
@@ -14,7 +13,7 @@ class Cell_Possibility_Eliminator
 			int last_possibility = 0;
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
 			{
-				if (Possibilities_Validator :: validate(sudoku_3d, row, col))
+				if (Sudoku_Validator :: validate_possibilities(sudoku_3d, row, col, poss))
 				{
 					count++;
 					last_possibility = sudoku_3d[row][col][poss];
