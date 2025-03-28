@@ -3,46 +3,45 @@
 
 #include "box_start_determiner.cpp"
 
+#include "sudoku_possibilities_updater.cpp"
+
 #include "constants.cpp"
 
-class Box_Possibility_Eliminator
+class Single_Possibility_Box_Updater
 {
-	public:
-		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
+public:
+	static bool update(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
+	{
+		int box_start_row, box_start_col, box_end_row, box_end_col, last_possibilities, curr_row, curr_col;
+		int count = START_COUNT;
+		bool is_updated = false;
+
+		for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 		{
-			int box_start_row;
-            int box_start_col;
+			Box_Determiner ::determine(row, col, box_start_row, box_start_col, box_end_row, box_end_col);
 
-			int last_possibilities;
-			int count = START_COUNT;
-			int curr_row; 
-			int curr_col;
-
-			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
+			for (int box_row = box_start_row; box_row <= box_end_row; box_row++)
 			{
-				Box_Start_Determiner :: determine(row, col, box_start_row, box_start_col);
-				
-				for (int box_row = box_start_row; box_row < box_start_row + 3; box_row++)
+				for (int box_col = box_start_col; box_col <= box_end_col; box_col++)
 				{
-					for (int box_col = box_start_col; box_col < box_start_col + 3; box_col++)
+					if (sudoku_3d[box_row][box_col][poss] == poss)
 					{
-						if (sudoku_3d[box_row][box_col][poss] == poss)
-						{
-							count++;
-							curr_row = box_row;
-							curr_col = box_col;
-							last_possibilities = poss;
-						}
+						count++;
+						curr_row = box_row;
+						curr_col = box_col;
+						last_possibilities = poss;
 					}
-				}	
+				}
 			}
-			if (count == 1)
+			if (count == EXPECTED_COUNT)
 			{
 				sudoku_3d[curr_row][curr_col][SOLVED_INDEX] = last_possibilities;
-				return true;
+				is_updated = true;
+				Sudoku_Possibilities_Updater :: update(sudoku_3d, row, col);
 			}
-			return false;
 		}
+		return is_updated;
+	}
 };
 
 #endif

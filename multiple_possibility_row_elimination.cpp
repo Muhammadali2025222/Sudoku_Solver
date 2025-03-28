@@ -5,56 +5,58 @@
 
 #include "constants.cpp"
 
+#include "cells_comparison.cpp"
+
 class Row_Possibility_Eliminator
 {
-	public:
-		static bool compare_two_cells_in_col(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col, int next_col) 
-		{
-			for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
-			{
-				if (sudoku_3d[ row ][ col ][ poss ] = sudoku_3d[ row ][ next_col ][ poss ]) 
-				{
-					return true;
-				}
-			}
-			return false;
-		}
+public:
+	static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
+	{
+		bool is_possibility_eliminated = false;
+		int box_start_row, box_start_col, box_end_row, box_end_col;
 
-		static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
+		for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 		{
-			bool is_substituted = false;
-			for (int poss = MIN_POSS; poss < MAX_POSS; poss++) 
+			Box_Determiner ::determine(row, col, box_start_row, box_start_col, box_end_row, box_end_col);
+
+			for (int box_row = box_start_row; box_row <= box_end_row; box_row++)
 			{
-				if ((Sudoku_Validator :: validate_possibilities(sudoku_3d, row, col, poss)))
+				for (int box_col = box_start_col; box_col <= box_end_col; box_col++)
 				{
-					int next_col = col + 1;
-					if ( compare_two_cells_in_col( sudoku_3d, row, col, next_col))
+					if (Sudoku_Validator ::validate_possibilities(sudoku_3d, row, col, poss))
 					{
-						for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
+						int box_next_row = box_row;
+						int box_next_col = box_col + 1;
+						if (box_next_col >= box_end_col && Cells_Comparison ::compare_two_cells(sudoku_3d, row, col, box_next_row, box_next_col))
 						{
-							if (remove_col != col && remove_col != next_col)
+							for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
 							{
-								sudoku_3d[ row ][ remove_col ][ poss ] = BLANK_INDEX;
-								is_substituted = true;
+								if (remove_col != box_col && remove_col != box_next_col)
+								{
+									sudoku_3d[row][remove_col][poss] = BLANK_INDEX;
+									is_possibility_eliminated = true;
+								}
 							}
 						}
-					}
-					next_col = col + 2;
-					if ( compare_two_cells_in_col( sudoku_3d, row, col, next_col))
-					{
-						for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
+
+						box_next_col = box_col + 2;
+						if (box_next_col >= box_end_col && Cells_Comparison ::compare_two_cells(sudoku_3d, row, col,box_next_row, box_next_col))
 						{
-							if (remove_col != col && remove_col != next_col)
+							for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
 							{
-								sudoku_3d[ row ][ remove_col ][ poss ] = BLANK_INDEX;
-								is_substituted = true;
+								if (remove_col != box_col && remove_col != box_next_col)
+								{
+									sudoku_3d[row][remove_col][poss] = BLANK_INDEX;
+									is_possibility_eliminated = true;
+								}
 							}
 						}
 					}
 				}
 			}
-			return is_substituted;
 		}
+		return is_possibility_eliminated;
+	}
 };
 
 #endif
