@@ -16,16 +16,16 @@ public:
 			{
 				if (Sudoku_Validator ::validate_2d_sudoku(sudoku_2d, row, col))
 				{
-					sudoku_3d[row][col][SOLVED_INDEX] = sudoku_2d[row][col];
+					sudoku_3d[row][col][SOLVED_CELL] = sudoku_2d[row][col];
 
 					for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 					{
-						sudoku_3d[row][col][poss] = BLANK_INDEX;
+						sudoku_3d[row][col][poss] = BLANK_CELL;
 					}
 				}
 				else
 				{
-					sudoku_3d[row][col][SOLVED_INDEX] = BLANK_INDEX;
+					sudoku_3d[row][col][SOLVED_CELL] = BLANK_CELL;
 					for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 					{
 						sudoku_3d[row][col][poss] = poss;

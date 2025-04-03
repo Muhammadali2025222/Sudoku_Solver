@@ -1,12 +1,9 @@
-#include <iostream>
-
 #include "create_sudoku_3d.cpp"
-
 #include "sudoku_processor.cpp"
-
 #include "sudoku_printer.cpp"
-
 #include "constants.cpp"
+
+#include <iostream>
 
 using namespace std;
 

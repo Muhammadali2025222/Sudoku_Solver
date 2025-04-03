@@ -1,12 +1,12 @@
 #ifndef sudoku_processor_cpp
 #define sudoku_processor_cpp
 
-#include <iostream>
-
-#include "solved_value_eliminator.cpp"
-#include "unsolved_value_eliminator.cpp"
-#include "updation_handler.cpp"
+#include "elimination_handler.cpp"
+#include "sudoku_possibility_updater.cpp"
 #include "sudoku_validator.cpp"
+#include "box_range_determiner.cpp"
+
+#include <iostream>
 
 using namespace std;
 
@@ -15,28 +15,28 @@ class Sudoku_Processor
 public:
 	static void process(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS])
 	{
-		int box_start_row, box_start_col, box_end_row, box_end_col;
-		
 		for (int row = MIN_ROW; row < MAX_ROW; row++)
 		{
 			bool is_changed = false;
 			for (int col = MIN_COL; col < MAX_COL; col++)
 			{
-				if (Sudoku_Validator ::validate_solved_value(sudoku_3d, row, col))
+				if (Sudoku_Validator ::validate_solved_cell(sudoku_3d, row, col))
 				{
-					if (Solved_Value_Eliminator :: perform_elimination(sudoku_3d, row, col))
+					if (Elimination_Handler ::eliminate_using_solved_cells(sudoku_3d, row, col))
 					{
 						is_changed = true;
 					}
-					if (Updation_Handler :: perform_updation(sudoku_3d, row, col))
+					if (Sudoku_Possibility_Updater ::update_possibility(sudoku_3d, row, col))
 					{
 						is_changed = true;
 					}
 				}
-				Box_Determiner ::determine(row, col, box_start_row, box_start_col, box_end_row, box_end_col);
+				int box_start_row, box_start_col, box_end_row, box_end_col;
+				Box_Range_Determiner ::determine_Box_Range(row, col, box_start_row, box_start_col,
+														   box_end_row, box_end_col);
 				if (row == box_end_row && col == box_end_col)
 				{
-					if (Unsolved_Value_Eliminator :: perform_elimination(sudoku_3d, row, col))
+					if (Elimination_Handler ::eliminate_using_unsolved_cells(sudoku_3d, row, col))
 					{
 						is_changed = true;
 					}

@@ -17,7 +17,7 @@ public:
 		{
 			for (int col = MIN_COL; col < MAX_COL; col++)
 			{
-				cout << sudoku_3d[row][col][SOLVED_INDEX] << "\t";
+				cout << sudoku_3d[row][col][SOLVED_CELL] << "\t";
 			}
 			cout << "\n";
 		}
