@@ -3,14 +3,16 @@
 
 const int MIN_POSS = 1;
 const int MAX_POSS = 10;
+const int INVALID_POSS = -2;
 
 const int MIN_ROW = 0;
 const int MAX_ROW = 9;
 const int ROW_RESET_LIMIT = 8;
-const int ROW_START = -1;
+const int INVALID_ROW = -1;
 
 const int MIN_COL = 0;
 const int MAX_COL = 9;
+const int INVALID_COL = -1;
 
 const int SOLVED_CELL = 0;
 const int BLANK_CELL = -1;

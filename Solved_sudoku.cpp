@@ -12,7 +12,7 @@ public:
 		{
 			for (int col = MIN_COL; col < MAX_ROW; col++)
 			{
-				if (Sudoku_Validator :: validate_solved_value(sudoku_3d, row, col))
+				if (Sudoku_Validator :: is_cell_solved(sudoku_3d, row, col))
 				{
 					return false;
 				}

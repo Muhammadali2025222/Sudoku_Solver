@@ -11,7 +11,7 @@ public:
 	{
 		bool are_possibilities_updated = false;
 		
-		if (Sudoku_Validator ::validate_solved_cell(sudoku_3d, row, col))
+		if (Sudoku_Validator :: is_cell_solved(sudoku_3d, row, col))
 		{
 			for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 			{

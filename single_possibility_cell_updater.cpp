@@ -14,11 +14,11 @@ private:
 public:
 	static bool update_possibility(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 	{
-		int count = START_COUNT, last_possibility;
+		int count = START_COUNT, last_possibility = INVALID_POSS;
 
 		for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 		{
-			if (Sudoku_Validator :: validate_possibility(sudoku_3d, row, col, poss))
+			if (Sudoku_Validator :: do_possibilities_exist(sudoku_3d, row, col, poss))
 			{
 				count++;
 				last_possibility = sudoku_3d[row][col][poss];
@@ -31,10 +31,9 @@ public:
 		if (count == EXPECTED_COUNT)
 		{
 			sudoku_3d[row][col][SOLVED_CELL] = last_possibility;
-			Cell_Possibilities_Updater ::update_possibility(sudoku_3d, row, col);
+			Cell_Possibilities_Updater :: update_possibility(sudoku_3d, row, col);
 			return true;
 		}
-		count = START_COUNT;
 		return false;
 	}
 };

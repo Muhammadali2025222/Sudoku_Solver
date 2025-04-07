@@ -15,15 +15,15 @@ public:
                                              int row, int col)
     {
         bool is_eliminated = false;
-        if (Row_Elimination ::eliminate(sudoku_3d, row, col))
+        if (Row_Elimination :: eliminate(sudoku_3d, row, col))
         {
             is_eliminated = true;
         }
-        if (Column_Elimination ::eliminate(sudoku_3d, row, col))
+        if (Column_Elimination :: eliminate(sudoku_3d, row, col))
         {
             is_eliminated = true;
         }
-        if (Box_Elimination ::eliminate(sudoku_3d, row, col))
+        if (Box_Elimination :: eliminate(sudoku_3d, row, col))
         {
             is_eliminated = true;
         }
@@ -33,11 +33,11 @@ public:
                                                int row, int col)
     {
         bool is_eliminated = false;
-        if (Row_Possibility_Eliminator ::eliminate(sudoku_3d, row, col))
+        if (Row_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
         {
             is_eliminated = true;
         }
-        if (Column_Possibility_Eliminator ::eliminate(sudoku_3d, row, col))
+        if (Column_Possibility_Eliminator :: eliminate(sudoku_3d, row, col))
         {
             is_eliminated = true;
         }

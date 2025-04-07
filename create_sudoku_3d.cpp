@@ -14,7 +14,7 @@ public:
 		{
 			for (int col = MIN_COL; col < MAX_COL; col++)
 			{
-				if (Sudoku_Validator ::validate_2d_sudoku(sudoku_2d, row, col))
+				if (Sudoku_Validator :: is_cell_solved(sudoku_2d, row, col))
 				{
 					sudoku_3d[row][col][SOLVED_CELL] = sudoku_2d[row][col];
 

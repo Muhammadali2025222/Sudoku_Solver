@@ -10,11 +10,11 @@ public:
 	static bool update_possibility(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 	{
 		bool is_updated = false;
-		if (Single_Possibility_Box_Updater ::update_possibility(sudoku_3d, row, col))
+		if (Single_Possibility_Box_Updater :: update_possibility(sudoku_3d, row, col))
 		{
 			is_updated = true;
 		}
-		if (Single_Possibility_Cell_Updater ::update_possibility(sudoku_3d, row, col))
+		if (Single_Possibility_Cell_Updater :: update_possibility(sudoku_3d, row, col))
 		{
 			is_updated = true;
 		}

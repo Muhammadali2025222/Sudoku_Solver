@@ -4,6 +4,8 @@
 #include "constants.cpp"
 
 class Box_Possibility_Checker
+// Responsibility :
+// 1 . Check possibility exist in the 3x3 box.
 {
 private:
     static const int START_COUNT = 0;
@@ -14,6 +16,11 @@ public:
                                              int box_end_row, int box_end_col, int box_row,
                                              int box_col, int box_next_row, int box_next_col,
                                              int poss)
+    // Intended Action :
+    // 1 . Iterate over the 3x3 box.
+    // 2 . Check that the compared possibilities are not present in any other cell of the box
+    // except the compared cells and return true.
+    // 3 . If it exist in any other cell except the compared cells return false.
     {
         int count = START_COUNT;
         for (int check_row = box_start_row; check_row <= box_end_row; check_row++)
@@ -29,10 +36,13 @@ public:
                 {
                     count++;
                 }
+                if (count > START_COUNT)
+                {
+                    break;
+                }
             }
             if (count > START_COUNT)
             {
-                count = START_COUNT;
                 break;
             }
         }
