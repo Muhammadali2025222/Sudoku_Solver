@@ -14,12 +14,10 @@ public:
 	static bool eliminate(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int row, int col)
 	// Intended Action :
 	// 1 . Iterate over the whole 3x3 box.
-	// 2 . Compare the possbilities of 1st cell in row with middle cell in row and
-	// with last cell in col.
-	// 3 . Check that those possibilities are not present in any other cell of box
-	// except the ones we compared.
-	// 4 . Eliminate the same possibilities from all the other cells present in the
-	// col except the ones we compared and return true.
+	// 2 . Check that the possibility is not present in any other cell of box
+	// except the one we are on.
+	// 3 . Eliminate the same possibility from all the other cells present in the
+	// col except the one we are on.
 	// 5 . Otherwise return false.
 	{
 		bool is_possibility_eliminated = false;

@@ -16,7 +16,8 @@ public:
 	{
 		for (int row = MIN_ROW; row < MAX_ROW; row++)
 		{
-			bool is_changed = false;
+			bool has_made_progress = false;
+
 			for (int col = MIN_COL; col < MAX_COL; col++)
 			{
 				int first_row = 0, first_col = 0; 
@@ -87,32 +88,32 @@ public:
 				{
 					if (Elimination_Handler_Test :: eliminate_using_unsolved_cells(sudoku_3d, first_row, third_col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 				if (fifth_row == box_end_row && forth_col == box_end_col)
 				{
 					if (Elimination_Handler_Test :: eliminate_using_unsolved_cells(sudoku_3d, fifth_row, forth_col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 				if (seventh_row == box_end_row && eighth_col == box_end_col)
 				{
 					if (Elimination_Handler_Test :: eliminate_using_unsolved_cells(sudoku_3d, seventh_row, eighth_col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 				if (sixth_row == box_end_row && ninth_col == box_end_col)
 				{
 					if (Elimination_Handler_Test :: eliminate_using_unsolved_cells(sudoku_3d, sixth_row, ninth_col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 			}
-			if (is_changed && row == ROW_RESET_LIMIT)
+			if (has_made_progress && row == ROW_RESET_LIMIT)
 			{
 				row = INVALID_ROW;
 			}

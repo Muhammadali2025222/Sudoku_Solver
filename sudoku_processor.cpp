@@ -17,18 +17,18 @@ public:
 	{
 		for (int row = MIN_ROW; row < MAX_ROW; row++)
 		{
-			bool is_changed = false;
+			bool has_made_progress = false;
 			for (int col = MIN_COL; col < MAX_COL; col++)
 			{
 				if (Sudoku_Validator :: is_cell_solved(sudoku_3d, row, col))
 				{
 					if (Elimination_Handler :: eliminate_using_solved_cells(sudoku_3d, row, col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 					if (Sudoku_Possibility_Updater :: update_possibility(sudoku_3d, row, col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 
@@ -39,11 +39,11 @@ public:
 				{
 					if (Elimination_Handler :: eliminate_using_unsolved_cells(sudoku_3d, row, col))
 					{
-						is_changed = true;
+						has_made_progress = true;
 					}
 				}
 			}
-			if (is_changed && row == ROW_RESET_LIMIT)
+			if (has_made_progress && row == ROW_RESET_LIMIT)
 			{
 				row = INVALID_ROW;
 			}
