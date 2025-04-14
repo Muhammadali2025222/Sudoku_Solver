@@ -31,7 +31,7 @@ public:
 		if (count == EXPECTED_COUNT)
 		{
 			sudoku_3d[row][col][SOLVED_CELL] = last_possibility;
-			Cell_Possibilities_Updater :: update_possibility(sudoku_3d, row, col);
+			sudoku_3d[row][col][last_possibility] = BLANK_CELL;
 			return true;
 		}
 		return false;

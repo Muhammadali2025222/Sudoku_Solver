@@ -11,8 +11,8 @@ private:
     static const int START_COUNT = 0;
 
 public:
-    static bool exist_only_in_compared_cells(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int box_start_row, 
-    int box_start_col, int box_end_row, int box_end_col, int box_row, int box_col, int poss)
+    static bool exist_only_in_one_row(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int box_start_row,
+                                      int box_start_col, int box_end_row, int box_end_col, int box_row, int poss)
     // Intended Action :
     // 1 . Iterate over the 3x3 box.
     // 2 . Check that the possibility is not present in any other cell of the box except for the one we are on.
@@ -21,13 +21,42 @@ public:
         int count = START_COUNT;
         for (int check_row = box_start_row; check_row <= box_end_row; check_row++)
         {
+            if (check_row == box_row)
+            {
+                continue;
+            }
             for (int check_col = box_start_col; check_col <= box_end_col; check_col++)
             {
-                if (check_row == box_row && check_col == box_col)
+                if (sudoku_3d[check_row][check_col][poss] == poss)
+                {
+                    count++;
+                }
+                if (count > START_COUNT)
+                {
+                    break;
+                }
+            }
+            if (count > START_COUNT)
+            {
+                break;
+            }
+        }
+        return (count == START_COUNT);
+    }
+
+    static bool exist_only_in_one_col(int sudoku_3d[MAX_ROW][MAX_COL][MAX_POSS], int box_start_row,
+    int box_start_col, int box_end_row, int box_end_col, int box_col, int poss)
+    {
+        int count = START_COUNT;
+        for (int check_row = box_start_row; check_row <= box_end_row; check_row++)
+        {
+            for (int check_col = box_start_col; check_col <= box_end_col; check_col++)
+            {
+                if (check_row == box_col)
                 {
                     continue;
                 }
-                else if (sudoku_3d[check_row][check_col][poss] == poss)
+                if (sudoku_3d[check_row][check_col][poss] == poss)
                 {
                     count++;
                 }

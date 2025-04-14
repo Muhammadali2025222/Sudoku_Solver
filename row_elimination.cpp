@@ -11,16 +11,13 @@ public:
 		bool is_possibility_eliminated = false;
 
 		int value_to_eliminate = sudoku_3d[row][col][SOLVED_CELL];
-
+		int poss = value_to_eliminate;
 		for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
 		{
-			for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
+			if (sudoku_3d[row][remove_col][poss] == value_to_eliminate)
 			{
-				if (sudoku_3d[row][remove_col][poss] == value_to_eliminate)
-				{
-					sudoku_3d[row][remove_col][poss] = BLANK_CELL;
-					is_possibility_eliminated = true;
-				}
+				sudoku_3d[row][remove_col][poss] = BLANK_CELL;
+				is_possibility_eliminated = true;
 			}
 		}
 		return is_possibility_eliminated;

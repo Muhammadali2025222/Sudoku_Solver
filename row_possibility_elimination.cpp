@@ -3,6 +3,7 @@
 
 #include "constants.cpp"
 #include "box_range_calculator.cpp"
+#include "Sudoku_Validator.cpp"
 #include "box_possibility_checker.cpp"
 
 class Row_Possibility_Eliminator
@@ -33,15 +34,18 @@ public:
 			{
 				for (int poss = MIN_POSS; poss < MAX_POSS; poss++)
 				{
-					if (Box_Possibility_Checker :: exist_only_in_compared_cells(sudoku_3d, box_start_row, 
-						box_start_col, box_end_row, box_end_col, box_row, box_col, poss))
+					if (Sudoku_Validator :: do_possibilities_exist(sudoku_3d, box_row, box_col, poss))
 					{
-						for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
+						if (Box_Possibility_Checker :: exist_only_in_one_row(sudoku_3d, box_start_row, 
+							box_start_col, box_end_row, box_end_col, box_row, poss))
 						{
-							if (remove_col != box_col)
+							for (int remove_col = MIN_COL; remove_col < MAX_COL; remove_col++)
 							{
-								sudoku_3d[row][remove_col][poss] = BLANK_CELL;
-								is_possibility_eliminated = true;
+								if (remove_col > box_start_col || remove_col < box_end_col)
+								{
+									sudoku_3d[row][remove_col][poss] = BLANK_CELL;
+									is_possibility_eliminated = true;
+								}
 							}
 						}
 					}
